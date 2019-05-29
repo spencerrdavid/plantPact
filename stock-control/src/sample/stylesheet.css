@@ -1,0 +1,26 @@
+.root {
+    -fx-font-size: 18px;
+    -fx-font-family: "Tahoma";
+    -fx-text-base-color: #2b2b2b;
+    -fx-base: #f5f5f5;
+    -fx-background: #f5f5f5;
+}
+
+.button {
+    -fx-font-family: "Tahoma";
+    -fx-padding: 5;
+    -fx-border-color: #2b4116;
+    -fx-background-color: #2b4116;
+    -fx-font-size: 18px;
+    -fx-text-fill: #f5f5f5;
+    -fx-background-radius: 0;
+}
+
+.button:hover {
+    -fx-text-fill: #eed7ac;
+}
+
+.button:pressed {
+    -fx-border-color: #eed7ac;
+    -fx-background-color: #eed7ac;
+}
