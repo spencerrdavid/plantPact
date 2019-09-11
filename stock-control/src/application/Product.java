@@ -23,7 +23,8 @@ public class Product
      * Constructor for Product objects.
      */
     public Product(int id, String code, String name, String description,
-                    String ingredients, int price, int quantity) {
+                    String ingredients, int price, int quantity)
+    {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -95,10 +96,18 @@ public class Product
         this.price = price;
     }
 
+    /**
+     * Updates the quantity of this product in storage.
+     * @param weight The amount of the product in kilograms
+     */
     public void updateStoreQuantity(int weight) {
         this.storeQuantity = storeQuantity + weight;
     }
 
+    /**
+     * Updates the quantity of this product on shop floor.
+     * @param weight The amount of the product in kilograms
+     */
     public void updateFloorQuantity(int weight) {
         this.floorQuantity = floorQuantity + weight;
     }
