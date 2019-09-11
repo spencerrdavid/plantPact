@@ -1,4 +1,4 @@
-package sample;
+package application;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -33,8 +33,8 @@ public class Main extends Application {
         for (Button button : new Button[] {newProduct}) {
             button.setMinWidth(200);
             button.setMaxWidth(200);
-            button.setMinHeight(30);
-            button.setMaxHeight(30);
+            button.setMinHeight(40);
+            button.setMaxHeight(40);
             button.setId("topButton");
         }
 
