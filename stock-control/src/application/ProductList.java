@@ -26,6 +26,10 @@ public class ProductList extends BorderPane
     {
         super();
         cardList = FXCollections.observableArrayList();
+        Product test = new Product(0, "0000", "", "", "", 0,0);
+        ProductCard testCard = new ProductCard(test);
+        cardList.add(testCard);
+        cardListView = new ListView<>();
         cardListView.setItems(cardList);
         emptyLabel = new Label("No products have been added yet.");
         emptyLabel.setId("empty-label");

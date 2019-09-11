@@ -28,7 +28,7 @@ public class Product
         this.id = id;
         this.code = code;
         this.name = name;
-        this.image = "";
+        this.image = "https://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/cat1/MissingImage_BB.png";
         this.description = description;
         this.ingredients = ingredients;
         this.price = price;

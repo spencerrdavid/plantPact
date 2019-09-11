@@ -64,7 +64,7 @@ public class Main extends Application
         Pane addProduct = new HBox(newProduct);
         addProduct.setPadding(padding);
 
-        Pane topMenu = new BorderPane(addProduct, null, null, null, null);
+        Pane topMenu = new BorderPane(productList, addProduct, null, null, null);
 
         root = new BorderPane(null, topMenu, null, null, null);
         root.setPrefSize(900, 700);

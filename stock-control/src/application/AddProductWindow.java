@@ -59,7 +59,7 @@ public class AddProductWindow extends Application
         BorderPane contents = new BorderPane();
 
         Scene scene = new Scene(contents, 700, 800);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setTitle("Add Product");
         stage.setScene(scene);
         stage.show();
