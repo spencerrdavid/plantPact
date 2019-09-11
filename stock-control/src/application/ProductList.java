@@ -2,6 +2,7 @@ package application;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
@@ -26,14 +27,24 @@ public class ProductList extends BorderPane
     {
         super();
         cardList = FXCollections.observableArrayList();
-        Product test = new Product(0, "0000", "", "", "", 0,0);
+        Product test = new Product(0, "0000", "food", "", "", 0,50);
         ProductCard testCard = new ProductCard(test);
+        Product test1 = new Product(0, "0000", "food", "", "", 0,60);
+        ProductCard testCard1 = new ProductCard(test1);
+        Product test2 = new Product(0, "0000", "food", "", "", 0,70);
+        ProductCard testCard2 = new ProductCard(test2);
         cardList.add(testCard);
+        cardList.add(testCard1);
+        cardList.add(testCard2);
         cardListView = new ListView<>();
+        cardListView.setOrientation(Orientation.HORIZONTAL);
+        cardListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        cardListView.getSelectionModel().clearSelection();
+        cardListView.setFocusTraversable(false);
         cardListView.setItems(cardList);
         emptyLabel = new Label("No products have been added yet.");
         emptyLabel.setId("empty-label");
-        setCenter(emptyLabel);
+        setCenter(cardListView);
 
     }
 

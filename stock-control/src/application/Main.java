@@ -6,8 +6,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -64,9 +65,12 @@ public class Main extends Application
         Pane addProduct = new HBox(newProduct);
         addProduct.setPadding(padding);
 
-        Pane topMenu = new BorderPane(productList, addProduct, null, null, null);
+        HBox list = new HBox(productList);
+        list.setMaxHeight(500);
 
-        root = new BorderPane(null, topMenu, null, null, null);
+        Pane topMenu = new BorderPane(addProduct, null, null, null, null);
+
+        root = new BorderPane(list, topMenu, null, null, null);
         root.setPrefSize(900, 700);
 
         Scene scene = new Scene(root);

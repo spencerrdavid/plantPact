@@ -27,13 +27,12 @@ public class ProductCard extends VBox
         image.setFitHeight(200);
         image.setFitWidth(200);
         image.setOnMouseClicked((MouseEvent e) -> System.out.println("clicked"));
-        Label nameLabel = new Label();
-        Label storeQuantityLabel = new Label();
-        Label floorQuantityLabel = new Label();
+        Label nameLabel = new Label(product.getName());
+        Label storeQuantityLabel = new Label(String.valueOf(product.getStoreQuantity()));
+        Label floorQuantityLabel = new Label(String.valueOf(product.getFloorQuantity()));
         for (Label label : new Label[] {nameLabel, storeQuantityLabel, floorQuantityLabel}) {
             label.setId("text-label");
         }
-        nameLabel.setText(product.getName());
         nameLabel.setMaxWidth(Double.MAX_VALUE);
         nameLabel.setId("name-label");
         HBox quantities = new HBox(storeQuantityLabel, floorQuantityLabel);
