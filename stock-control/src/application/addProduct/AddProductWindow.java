@@ -48,7 +48,7 @@ public class AddProductWindow extends Application
             }
         }
         catch (NullPointerException exception) {
-            System.err.println("Something went wrong!");
+            System.err.println("Something went wrong!" + exception.toString());
         }
         catch (InvalidFieldException exception) {
             Alerts.showAlert(Alert.AlertType.ERROR,
