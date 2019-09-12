@@ -72,13 +72,11 @@ public class AddProductWindow extends Application
     public void start(Stage window)
     {
         stage = window;
-        Label title = new Label("Add product:");
-        title.setId("title");
 
         // Add text fields
-        VBox centerBox = new VBox();
+        VBox fieldsBox = new VBox();
         for (AddProductEnum value : AddProductEnum.values()) {
-            centerBox.getChildren().add(new AddProductTextBox(value.toString(), newProduct, value));
+            fieldsBox.getChildren().add(new AddProductTextBox(value.toString(), newProduct, value));
         }
 
         Button addButton = new Button("Add Product");
@@ -93,10 +91,10 @@ public class AddProductWindow extends Application
         buttonHBox.setId("button-hbox");
         buttonHBox.setAlignment(Pos.CENTER);
 
-        BorderPane contents = new BorderPane(centerBox, title, null, buttonHBox, null);
+        VBox root = new VBox(fieldsBox, buttonHBox);
 
-        Scene scene = new Scene(contents, 700, 800);
-//        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        Scene scene = new Scene(root, 600, 400);
+        scene.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
         stage.setTitle("Add Product");
         stage.setScene(scene);
         stage.show();

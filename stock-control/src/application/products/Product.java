@@ -2,6 +2,9 @@ package application.products;
 
 import application.addProduct.AddProductEnum;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * The Product class represents products within the application.
  *
@@ -34,7 +37,7 @@ public class Product
         if (image.isEmpty()) {
             this.image = DEFAULT_IMAGE;
         } else {
-            this.image = image;
+            setImage(image);
         }
         this.description = description;
         this.ingredients = ingredients;
@@ -98,8 +101,19 @@ public class Product
         this.name = name;
     }
 
+    /**
+     * Checks that input string is in URL form and sets the image field accordingly.
+     * @param image The URL string to be checked
+     */
     public void setImage(String image) {
-        this.image = image;
+        try {
+            new URL(image);
+            this.image = image;
+        }
+        catch (MalformedURLException e) {
+            this.image = DEFAULT_IMAGE;
+            System.err.println("image string not a valid URL: " + e.toString());
+        }
     }
 
     public void setDescription(String description) {
@@ -150,7 +164,7 @@ public class Product
                 break;
             case IMAGE:
                 if (!input.isEmpty()) {
-                    image = input;
+                    setImage(input);
                 } else {
                     image = DEFAULT_IMAGE;
                 }
