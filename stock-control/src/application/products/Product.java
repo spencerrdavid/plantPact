@@ -2,6 +2,7 @@ package application.products;
 
 import application.addProduct.AddProductEnum;
 
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -130,7 +131,7 @@ public class Product
 
     /**
      * Updates the quantity of this product in storage.
-     * @param weight The amount of the product in kilograms
+     * @param weight integer amount of the product, in kilograms
      */
     public void updateStoreQuantity(int weight) {
         this.storeQuantity = storeQuantity + weight;
@@ -138,20 +139,18 @@ public class Product
 
     /**
      * Updates the quantity of this product on shop floor.
-     * @param weight The amount of the product in kilograms
+     * @param weight integer amount of the product, in kilograms
      */
     public void updateFloorQuantity(int weight) {
         this.floorQuantity = floorQuantity + weight;
     }
 
     /**
-     * Sets this this object's fields according to input.
-     *
-     * @param input The text to be assigned
-     * @param type The field type
+     * Sets each of this object's fields, according to given input.
+     * @param input String representation of field value
+     * @param type AddProductEnum identifying the field to be set
      */
-    public void setFieldFromInput(String input, AddProductEnum type)
-    {
+    public void setFieldFromInput(String input, AddProductEnum type) {
         switch (type) {
             case ID:
                 if (ProductDataProcessor.isPositiveInteger(input)) {
@@ -194,5 +193,40 @@ public class Product
                 }
                 break;
         }
+    }
+
+    /**
+     * Provides a string representation of this Product's fields.
+     * @return A string representation of this Product
+     */
+    @Override
+    public String toString() {
+        StringBuilder productDetails = new StringBuilder();
+        productDetails.append("ID: ");
+        productDetails.append(id);
+        productDetails.append("\n");
+        productDetails.append("Product Name: ");
+        productDetails.append(name);
+        productDetails.append("\n");
+        productDetails.append("Code: ");
+        productDetails.append(code);
+        productDetails.append("\n");
+        productDetails.append("Description: ");
+        productDetails.append(description);
+        productDetails.append("\n");
+        productDetails.append("Ingredients: ");
+        productDetails.append(ingredients);
+        productDetails.append("\n");
+        productDetails.append("Price per 500g: £");
+        productDetails.append(new BigDecimal(price).movePointLeft(2));
+        productDetails.append("\n");
+        productDetails.append("Quantity in stock: ");
+        productDetails.append(getTotalStockQuantity());
+        productDetails.append("kg");
+        productDetails.append("\n");
+        productDetails.append("Image URL: ");
+        productDetails.append(image);
+        productDetails.append("\n");
+        return productDetails.toString();
     }
 }

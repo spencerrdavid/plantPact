@@ -45,6 +45,7 @@ public class AddProductWindow extends Application
             if (ProductDataProcessor.validProductData(newProduct)) {
                 // Product contains valid data and can be added
                 Main.addProduct(newProduct);
+                System.out.println("Product added: \n" + newProduct);
             }
         }
         catch (NullPointerException exception) {
