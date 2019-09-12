@@ -1,7 +1,5 @@
 package application.products;
 
-import application.products.Product;
-import application.products.ProductCard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
@@ -51,13 +49,8 @@ public class ProductList extends BorderPane
     /**
      * Adds a product to the list.
      * @param product The product to be added to the list.
-     * @throws InvalidFieldException when any field contains invalid data
-     * @return True if the product is successfully added
      */
-    public boolean addProduct(Product product) throws InvalidFieldException {
-        if (!validProductData(product)) {
-            throw new InvalidFieldException(field);
-        }
+    public void addProduct(Product product) {
         ProductCard newCard = new ProductCard(product);
         if (cardList.isEmpty()) {
             this.setCenter(cardListView);
@@ -66,7 +59,5 @@ public class ProductList extends BorderPane
         } else {
             cardList.add(newCard);
         }
-        return true;
     }
-
 }

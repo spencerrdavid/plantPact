@@ -2,6 +2,7 @@ package application.main;
 
 import application.addProduct.AddProductWindow;
 import application.products.Product;
+import application.products.ProductDataProcessor;
 import application.products.ProductList;
 import javafx.application.Application;
 import javafx.event.Event;
@@ -54,11 +55,10 @@ public class Main extends Application
      * @param product The product to be added.
      */
     public static void addProduct(Product product) {
-        if (productList.addProduct(product)) {
-            addProductButton.setDisable(false);
-            addProductWindow.closeWindow();
-            addProductWindow = null;    // for garbage collection
-        }
+        productList.addProduct(product);
+        addProductButton.setDisable(false);
+        addProductWindow.closeWindow();
+        addProductWindow = null;    // for garbage collection
     }
 
     @Override

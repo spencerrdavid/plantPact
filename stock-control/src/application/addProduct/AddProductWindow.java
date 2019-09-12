@@ -1,11 +1,14 @@
 package application.addProduct;
 
 import application.main.Main;
+import application.main.Alerts;
 import application.products.Product;
+import application.products.ProductDataProcessor;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
@@ -28,12 +31,24 @@ public class AddProductWindow extends Application
      * Method used to add the new product to the application.
      * @param event The event that caused this call
      */
-    private void save(ActionEvent event) {
+    private void addProduct(ActionEvent event) {
         try {
-            Main.addProduct(newProduct);
+            if (ProductDataProcessor.validProductData(newProduct)) {
+                // Product contains valid data and can be added
+                Main.addProduct(newProduct);
+            }
         }
         catch (NullPointerException exception) {
             System.err.println("Something went wrong!");
+        }
+        catch (InvalidFieldException exception) {
+            Alerts.showAlert(Alert.AlertType.ERROR,
+                    exception.getType().toString().replace(":", " error").toUpperCase(),
+                    exception.getType().getInvalidFieldDescription().replace(": ", ""));
+        }
+        catch (StringLengthExceededException exception) {
+            Alerts.showAlert(Alert.AlertType.ERROR, "Error!",
+                    exception.getType().getStringLengthExceededDescription().replace(": ", ""));
         }
     }
 
@@ -53,7 +68,7 @@ public class AddProductWindow extends Application
 
         TextField name = new TextField();
         Button addButton = new Button("Add Product");
-        addButton.setOnAction(this::save);
+        addButton.setOnAction(this::addProduct);
         addButton.setMinHeight(50);
         addButton.setMaxHeight(50);
         addButton.setMaxWidth(300);

@@ -22,13 +22,17 @@ public class Product
     /**
      * Constructor for Product objects.
      */
-    public Product(int id, String code, String name, String description,
-                    String ingredients, int price, int quantity)
+    public Product(int id, String code, String name, String image, String description,
+                   String ingredients, int price, int quantity)
     {
         this.id = id;
         this.code = code;
         this.name = name;
-        this.image = "https://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/cat1/MissingImage_BB.png";
+        if (image.isEmpty()) {
+            this.image = "https://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/cat1/MissingImage_BB.png";
+        } else {
+            this.image = image;
+        }
         this.description = description;
         this.ingredients = ingredients;
         this.price = price;
