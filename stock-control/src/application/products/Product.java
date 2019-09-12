@@ -1,5 +1,7 @@
 package application.products;
 
+import application.addProduct.AddProductEnum;
+
 /**
  * The Product class represents products within the application.
  *
@@ -8,7 +10,8 @@ package application.products;
  */
 public class Product
 {
-
+    private static final String DEFAULT_IMAGE =
+            "https://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/cat1/MissingImage_BB.png";
     private int id;
     private String code;
     private String name;
@@ -29,7 +32,7 @@ public class Product
         this.code = code;
         this.name = name;
         if (image.isEmpty()) {
-            this.image = "https://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/cat1/MissingImage_BB.png";
+            this.image = DEFAULT_IMAGE;
         } else {
             this.image = image;
         }
@@ -38,6 +41,17 @@ public class Product
         this.price = price;
         this.storeQuantity = quantity;
         this.floorQuantity = 0;
+    }
+
+    /**
+     * The default constructor for this class
+     */
+    public Product()
+    {
+        image = DEFAULT_IMAGE;
+        price = 0;
+        storeQuantity = 0;
+        floorQuantity = 0;
     }
 
     public int getId() {
@@ -114,5 +128,46 @@ public class Product
      */
     public void updateFloorQuantity(int weight) {
         this.floorQuantity = floorQuantity + weight;
+    }
+
+    /**
+     * Sets this this object's fields according to input.
+     *
+     * @param input The text to be assigned
+     * @param type The field type
+     */
+    public void setFieldFromInput(String input, AddProductEnum type)
+    {
+        switch (type) {
+            case ID:
+                id = Integer.parseInt(input);
+                break;
+            case CODE:
+                code = input;
+                break;
+            case NAME:
+                name = input;
+                break;
+            case IMAGE:
+                if (!input.isEmpty()) {
+                    image = input;
+                } else {
+                    image = DEFAULT_IMAGE;
+                }
+                break;
+            case DESCRIPTION:
+                description = input;
+                break;
+            case INGREDIENTS:
+                ingredients = input;
+                break;
+            case PRICE:
+                price = Integer.parseInt(input);
+                break;
+            case QUANTITY:
+                storeQuantity = Integer.parseInt(input);
+                floorQuantity = 0;
+                break;
+        }
     }
 }

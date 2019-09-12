@@ -7,14 +7,15 @@ import application.products.ProductDataProcessor;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 
 /**
  * The AddProductWindow class creates a new window for adding a product.
@@ -26,6 +27,14 @@ public class AddProductWindow extends Application
 {
     private Product newProduct;
     private Stage stage;
+
+    /**
+     * Constructor for the AddProductWindow class
+     */
+    public AddProductWindow()
+    {
+        newProduct = new Product();
+    }
 
     /**
      * Method used to add the new product to the application.
@@ -66,7 +75,12 @@ public class AddProductWindow extends Application
         Label title = new Label("Add product:");
         title.setId("title");
 
-        TextField name = new TextField();
+        // Add text fields
+        VBox centerBox = new VBox();
+        for (AddProductEnum value : AddProductEnum.values()) {
+            centerBox.getChildren().add(new AddProductTextBox(value.toString(), newProduct, value));
+        }
+
         Button addButton = new Button("Add Product");
         addButton.setOnAction(this::addProduct);
         addButton.setMinHeight(50);
@@ -79,7 +93,7 @@ public class AddProductWindow extends Application
         buttonHBox.setId("button-hbox");
         buttonHBox.setAlignment(Pos.CENTER);
 
-        BorderPane contents = new BorderPane();
+        BorderPane contents = new BorderPane(centerBox, title, null, buttonHBox, null);
 
         Scene scene = new Scene(contents, 700, 800);
 //        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());

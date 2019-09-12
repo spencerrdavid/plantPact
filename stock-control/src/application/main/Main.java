@@ -23,7 +23,6 @@ import javafx.stage.Stage;
  */
 public class Main extends Application
 {
-
     private static Stage stage;
     private static BorderPane root;
     private static Button addProductButton;

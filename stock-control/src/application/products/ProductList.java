@@ -42,7 +42,7 @@ public class ProductList extends BorderPane
 //        cardListView.setItems(cardList);
         emptyLabel = new Label("No products have been added yet.");
         emptyLabel.setId("empty-label");
-        setCenter(cardListView);
+        setCenter(emptyLabel);
 
     }
 
