@@ -1,5 +1,8 @@
-package application;
+package application.main;
 
+import application.addProduct.AddProductWindow;
+import application.products.Product;
+import application.products.ProductList;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.geometry.Insets;
@@ -8,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -23,8 +25,9 @@ public class Main extends Application
 
     private static Stage stage;
     private static BorderPane root;
-    private ProductList productList;
-    private AddProductWindow addProductWindow;
+    private static Button addProductButton;
+    private static ProductList productList;
+    private static AddProductWindow addProductWindow;
 
     private Insets padding = new Insets(5, 5, 5, 5);
 
@@ -34,27 +37,39 @@ public class Main extends Application
     public Main()
     {
         productList = new ProductList();
-        addProductWindow = new AddProductWindow();
     }
 
     /**
      * Opens the AddProductWindow, from which a new product can be added to the list.
      * @param event The event that caused this method to be called
      */
-    public void addNewProduct(Event event)
-    {
+    public void openAddProductWindow(Event event) {
+        addProductWindow = new AddProductWindow();
         addProductWindow.start(new Stage());
+        addProductButton.setDisable(true);
+    }
+
+    /**
+     * Adds a product to the list of products.
+     * @param product The product to be added.
+     */
+    public static void addProduct(Product product) {
+        if (productList.addProduct(product)) {
+            addProductButton.setDisable(false);
+            addProductWindow.closeWindow();
+            addProductWindow = null;    // for garbage collection
+        }
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         stage = primaryStage;
 
-        Button newProduct = new Button("New Product");
-        newProduct.setOnAction(this::addNewProduct);
+        addProductButton = new Button("New Product");
+        addProductButton.setOnAction(this::openAddProductWindow);
 
-        for (Button button : new Button[] {newProduct}) {
+        for (Button button : new Button[] {addProductButton}) {
             button.setMinWidth(200);
             button.setMaxWidth(200);
             button.setMinHeight(40);
@@ -62,7 +77,7 @@ public class Main extends Application
             button.setId("topButton");
         }
 
-        Pane addProduct = new HBox(newProduct);
+        Pane addProduct = new HBox(addProductButton);
         addProduct.setPadding(padding);
 
         HBox list = new HBox(productList);

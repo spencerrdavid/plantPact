@@ -1,5 +1,6 @@
-package application;
+package application.products;
 
+import application.products.Product;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;

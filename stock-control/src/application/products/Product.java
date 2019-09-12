@@ -1,4 +1,4 @@
-package application;
+package application.products;
 
 /**
  * The Product class represents products within the application.
