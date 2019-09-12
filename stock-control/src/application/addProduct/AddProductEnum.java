@@ -42,7 +42,7 @@ public enum AddProductEnum {
             return "Please enter a valid ID for this product.";
         }
         else if (this == CODE) {
-            return "Please enter a valid code for this product.";
+            return "Please enter a four digit code for this product.";
         }
         else if (this == NAME) {
             return "Please enter a valid name for this product.";
@@ -54,7 +54,7 @@ public enum AddProductEnum {
             return "Please enter a valid description for this product.";
         }
         else if (this == INGREDIENTS) {
-            return "Please enter this product's ingredients list.";
+            return "Please enter this product's ingredients list, separated with commas.";
         }
         else if (this == PRICE) {
             return "Please enter this product's price per 500g, in pence.";

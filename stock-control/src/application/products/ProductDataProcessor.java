@@ -1,5 +1,6 @@
 package application.products;
 
+import application.addProduct.AddProductEnum;
 import application.addProduct.InvalidFieldException;
 import application.addProduct.StringLengthExceededException;
 
@@ -11,7 +12,8 @@ import application.addProduct.StringLengthExceededException;
  */
 public class ProductDataProcessor {
 
-    private static final int MAX_TEXT_LENGTH = 50;
+    private static final int MAX_TEXT_LENGTH = 10;
+    private static final int MAX_DIGIT_LENGTH = 6;
 
     /**
      * Validates user input and returns true if the given listing contains viable data.
@@ -21,6 +23,61 @@ public class ProductDataProcessor {
      * @throws StringLengthExceededException when a text field contains too much text
      */
     public static boolean validProductData(Product product) throws InvalidFieldException, StringLengthExceededException {
+        for (AddProductEnum field : AddProductEnum.values()) {
+            switch (field) {
+                case ID:
+                    // id (already validated as non-negative integer) must not be zero
+                    if (String.valueOf(product.getId()).length() > MAX_DIGIT_LENGTH) {
+                        throw new StringLengthExceededException(field);
+                    }
+                    if (product.getId() == 0) {
+                        throw new InvalidFieldException(field);
+                    }
+                    break;
+                case CODE:
+                    // code must be four digits
+                    if (product.getCode().length() != 4) {
+                        throw new InvalidFieldException(field);
+                    }
+                    break;
+                case NAME:
+                    if (product.getName().length() > MAX_TEXT_LENGTH) {
+                        throw new StringLengthExceededException(field);
+                    }
+                    break;
+                case IMAGE:
+                    // image string validation already handled within Product class
+                    break;
+                case PRICE:
+                    // price (already validated as non-negative integer) must not be zero
+                    if (String.valueOf(product.getPrice()).length() > MAX_DIGIT_LENGTH) {
+                        throw new StringLengthExceededException(field);
+                    }
+                    if (product.getPrice() == 0) {
+                        throw new InvalidFieldException(field);
+                    }
+                    break;
+                case QUANTITY:
+                    // storeQuantity (already validated as non-negative integer) must not be zero
+                    if (String.valueOf(product.getStoreQuantity()).length() > MAX_DIGIT_LENGTH) {
+                        throw new StringLengthExceededException(field);
+                    }
+                    if (product.getStoreQuantity() == 0) {
+                        throw new InvalidFieldException(field);
+                    }
+                    break;
+                case DESCRIPTION:
+                    if (product.getDescription().length() > MAX_TEXT_LENGTH) {
+                        throw new StringLengthExceededException(field);
+                    }
+                    break;
+                case INGREDIENTS:
+                    if (product.getIngredients().length() > MAX_TEXT_LENGTH) {
+                        throw new StringLengthExceededException(field);
+                    }
+                    break;
+            }
+        }
         return true;
     }
 
@@ -64,5 +121,23 @@ public class ProductDataProcessor {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Checks whether a given string represents a non-negative integer.
+     * @param str The string being checked
+     * @return true if the string represents a non-negative integer, else false
+     */
+    public static boolean isPositiveInteger(String str)
+    {
+        try {
+            int test = Integer.parseInt(str);
+            if (test >= 0) {
+                return true;
+            }
+        } catch(NumberFormatException e){
+            return false;
+        }
+        return false;
     }
 }

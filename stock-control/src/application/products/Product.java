@@ -154,7 +154,11 @@ public class Product
     {
         switch (type) {
             case ID:
-                id = Integer.parseInt(input);
+                if (ProductDataProcessor.isPositiveInteger(input)) {
+                    id = Integer.parseInt(input);
+                } else {
+                    id = 0;
+                }
                 break;
             case CODE:
                 code = input;
@@ -176,11 +180,18 @@ public class Product
                 ingredients = input;
                 break;
             case PRICE:
-                price = Integer.parseInt(input);
+                if (ProductDataProcessor.isPositiveInteger(input)) {
+                    price = Integer.parseInt(input);
+                } else {
+                    price = 0;
+                }
                 break;
             case QUANTITY:
-                storeQuantity = Integer.parseInt(input);
-                floorQuantity = 0;
+                if (ProductDataProcessor.isPositiveInteger(input)) {
+                    storeQuantity = Integer.parseInt(input);
+                } else {
+                    storeQuantity = 0;
+                }
                 break;
         }
     }
