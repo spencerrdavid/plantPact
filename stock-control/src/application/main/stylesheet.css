@@ -25,3 +25,7 @@
 .button:pressed {
     -fx-text-fill: #2b4116;
 }
+
+#productButton {
+    -fx-font-size: 14px;
+}

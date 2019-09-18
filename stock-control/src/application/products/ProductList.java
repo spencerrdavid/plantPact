@@ -1,7 +1,6 @@
 package application.products;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -35,10 +34,12 @@ public class ProductList extends BorderPane
         cardListView.setFocusTraversable(false);
         cardListView.setPrefWidth(800);
         products = new ArrayList<>();
+
         // for testing
         setTestProducts();
         cardListView.setItems(FXCollections.observableArrayList(products));
         setCenter(cardListView);
+
         emptyLabel = new Label("No products have been added yet.");
         emptyLabel.setId("empty-label");
 //        setCenter(emptyLabel);
@@ -67,22 +68,31 @@ public class ProductList extends BorderPane
         switch (type) {
             case "all":
                 cardListView.setItems(FXCollections.observableArrayList(products));
+                break;
             case "beans":
                 filterListByProductCode(ProductCodeEnum.BEANS);
+                break;
             case "nuts":
                 filterListByProductCode(ProductCodeEnum.NUTS);
+                break;
             case "flour":
                 filterListByProductCode(ProductCodeEnum.FLOUR);
+                break;
             case "pasta":
                 filterListByProductCode(ProductCodeEnum.PASTA);
+                break;
             case "rice":
                 filterListByProductCode(ProductCodeEnum.RICE);
+                break;
             case "grains":
                 filterListByProductCode(ProductCodeEnum.GRAINS);
+                break;
             case "fruit":
                 filterListByProductCode(ProductCodeEnum.FRUIT);
+                break;
             case "chocolate":
                 filterListByProductCode(ProductCodeEnum.CHOCOLATE);
+                break;
         }
     }
 

@@ -1,5 +1,11 @@
 package application.products;
 
+/**
+ * Enum for product category codes.
+ *
+ * @author David Spencer
+ * @version 1.0
+ */
 public enum ProductCodeEnum {
 
     BEANS("00"),

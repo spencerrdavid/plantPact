@@ -1,7 +1,7 @@
 package application.addProduct;
 
 /**
- * Enum for fields of product objects
+ * Enum for fields of product objects.
  *
  * @author David Spencer
  * @version 1.0

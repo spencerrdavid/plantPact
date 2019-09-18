@@ -2,7 +2,6 @@ package application.main;
 
 import application.addProduct.AddProductWindow;
 import application.products.Product;
-import application.products.ProductDataProcessor;
 import application.products.ProductList;
 import javafx.application.Application;
 import javafx.event.Event;
@@ -26,6 +25,16 @@ public class Main extends Application
     private static Stage stage;
     private static BorderPane root;
     private static Button addProductButton;
+    private static Button showAllButton;
+    private static Button beansButton;
+    private static Button nutsButton;
+    private static Button flourButton;
+    private static Button pastaButton;
+    private static Button riceButton;
+    private static Button grainsButton;
+    private static Button fruitButton;
+    private static Button chocolateButton;
+    private static Button[] productToggleButtons;
     private static ProductList productList;
     private static AddProductWindow addProductWindow;
 
@@ -54,9 +63,9 @@ public class Main extends Application
      * @param product The product to be added.
      */
     public static void addProduct(Product product) {
-        productList.toggleProducts("all");
         productList.addProduct(product);
         disableAddProductButton();
+        updateProductListByType("all");
         addProductWindow.closeWindow();
         addProductWindow = null;    // for garbage collection
     }
@@ -72,14 +81,56 @@ public class Main extends Application
      * Toggles products displayed by type.
      * @param type The product category to be displayed
      */
-    public static void updateProductListByType(String type) {
+    private static void updateProductListByType(String type) {
         productList.toggleProducts(type);
+        for (Button button : productToggleButtons) {
+            if (button.getText().equals(type.substring(0, 1).toUpperCase() + type.substring(1))) {
+                button.setDisable(true);
+            } else {
+                button.setDisable(false);
+            }
+        }
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         stage = primaryStage;
+
+        showAllButton = new Button("Show All");
+        showAllButton.setOnAction(e -> updateProductListByType("all"));
+        beansButton = new Button("Beans");
+        beansButton.setOnAction(e -> updateProductListByType("beans"));
+        nutsButton = new Button("Nuts");
+        nutsButton.setOnAction(e -> updateProductListByType("nuts"));
+        flourButton = new Button("Flour");
+        flourButton.setOnAction(e -> updateProductListByType("flour"));
+        pastaButton = new Button("Pasta");
+        pastaButton.setOnAction(e -> updateProductListByType("pasta"));
+        riceButton = new Button("Rice");
+        riceButton.setOnAction(e -> updateProductListByType("rice"));
+        grainsButton = new Button("Grains");
+        grainsButton.setOnAction(e -> updateProductListByType("grains"));
+        fruitButton = new Button("Fruit");
+        fruitButton.setOnAction(e -> updateProductListByType("fruit"));
+        chocolateButton = new Button("Chocolate");
+        chocolateButton.setOnAction(e -> updateProductListByType("chocolate"));
+
+        productToggleButtons = new Button[] {showAllButton, beansButton, nutsButton, flourButton, pastaButton,
+                riceButton, grainsButton, fruitButton, chocolateButton};
+
+        for (Button button : productToggleButtons) {
+            button.setMinWidth(50);
+            button.setMaxWidth(150);
+            button.setMinHeight(30);
+            button.setMaxHeight(30);
+            button.setId("productButton");
+        }
+
+        Pane toggleButtonsBox = new HBox(10);
+        toggleButtonsBox.getChildren().addAll(showAllButton, beansButton, nutsButton, flourButton, pastaButton,
+                riceButton, grainsButton, fruitButton, chocolateButton);
+        toggleButtonsBox.setPadding(padding);
 
         addProductButton = new Button("Add Product");
         addProductButton.setOnAction(this::openAddProductWindow);
@@ -92,20 +143,17 @@ public class Main extends Application
             button.setId("topButton");
         }
 
-        Pane addProduct = new HBox(addProductButton);
-        addProduct.setPadding(padding);
+        Pane addProductBox = new HBox(addProductButton);
+        addProductBox.setPadding(padding);
 
         HBox list = new HBox(productList);
-        list.setMaxHeight(500);
+        list.setMaxHeight(300);
         list.setMaxWidth(800);
-
-        HBox toggleButtonsBox = new HBox();
-        // add buttons to toggle display by type
 
         Pane topMenu = new BorderPane(toggleButtonsBox, null, null, null, null);
 
-        root = new BorderPane(list, topMenu, null, addProduct, null);
-        root.setPrefSize(900, 700);
+        root = new BorderPane(list, topMenu, null, addProductBox, null);
+        root.setPrefSize(900, 450);
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
