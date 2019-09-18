@@ -191,8 +191,16 @@ public class Product
     }
 
     /**
+     * Checks whether this product's code matches that of a given category.
+     * @param type the type of product being checked for
+     */
+    public boolean codeMatches(ProductCodeEnum type) {
+        return code.substring(0, 2).equals(type.toString());
+    }
+
+    /**
      * Provides a string representation of this Product's fields.
-     * @return A string representation of this Product
+     * @return String representation of this Product
      */
     @Override
     public String toString() {

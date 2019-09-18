@@ -54,6 +54,7 @@ public class Main extends Application
      * @param product The product to be added.
      */
     public static void addProduct(Product product) {
+        productList.toggleProducts("all");
         productList.addProduct(product);
         disableAddProductButton();
         addProductWindow.closeWindow();
@@ -67,12 +68,20 @@ public class Main extends Application
         addProductButton.setDisable(false);
     }
 
+    /**
+     * Toggles products displayed by type.
+     * @param type The product category to be displayed
+     */
+    public static void updateProductListByType(String type) {
+        productList.toggleProducts(type);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         stage = primaryStage;
 
-        addProductButton = new Button("New Product");
+        addProductButton = new Button("Add Product");
         addProductButton.setOnAction(this::openAddProductWindow);
 
         for (Button button : new Button[] {addProductButton}) {
@@ -90,9 +99,12 @@ public class Main extends Application
         list.setMaxHeight(500);
         list.setMaxWidth(800);
 
-        Pane topMenu = new BorderPane(addProduct, null, null, null, null);
+        HBox toggleButtonsBox = new HBox();
+        // add buttons to toggle display by type
 
-        root = new BorderPane(list, topMenu, null, null, null);
+        Pane topMenu = new BorderPane(toggleButtonsBox, null, null, null, null);
+
+        root = new BorderPane(list, topMenu, null, addProduct, null);
         root.setPrefSize(900, 700);
 
         Scene scene = new Scene(root);

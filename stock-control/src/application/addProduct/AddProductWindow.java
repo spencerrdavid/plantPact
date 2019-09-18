@@ -102,7 +102,7 @@ public class AddProductWindow extends Application
 
         VBox root = new VBox(fieldsBox, buttonHBox);
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 600, 350);
         scene.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
         stage.setTitle("Add Product");
         stage.setScene(scene);
