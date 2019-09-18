@@ -26,15 +26,6 @@ public class ProductDataProcessor {
     public static boolean validProductData(Product product) throws InvalidFieldException, StringLengthExceededException {
         for (AddProductEnum field : AddProductEnum.values()) {
             switch (field) {
-                case ID:
-                    // ID (already validated as non-negative integer) must not be zero
-                    if (lengthLimitExceeded(String.valueOf(product.getId()), MAX_DIGIT_LENGTH)) {
-                        throw new StringLengthExceededException(field);
-                    }
-                    if (product.getId() == 0) {
-                        throw new InvalidFieldException(field);
-                    }
-                    break;
                 case CODE:
                     // code must be four digits
                     if (emptyString(product.getCode()) || product.getCode().length() != CODE_LENGTH) {

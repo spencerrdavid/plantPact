@@ -7,7 +7,6 @@ package application.addProduct;
  * @version 1.0
  */
 public enum AddProductEnum {
-    ID("Product ID: "),
     CODE("Product code: "),
     NAME("Product name: "),
     IMAGE("Product image: "),
@@ -38,10 +37,7 @@ public enum AddProductEnum {
      * @return description for an alert
      */
     public String getInvalidFieldDescription() {
-        if (this == ID) {
-            return "Please enter a valid ID for this product.";
-        }
-        else if (this == CODE) {
+        if (this == CODE) {
             return "Please enter a four digit code for this product.";
         }
         else if (this == NAME) {

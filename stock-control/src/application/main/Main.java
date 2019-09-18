@@ -55,9 +55,16 @@ public class Main extends Application
      */
     public static void addProduct(Product product) {
         productList.addProduct(product);
-        addProductButton.setDisable(false);
+        disableAddProductButton();
         addProductWindow.closeWindow();
         addProductWindow = null;    // for garbage collection
+    }
+
+    /**
+     * Disables the Add Product button
+     */
+    public static void disableAddProductButton() {
+        addProductButton.setDisable(false);
     }
 
     @Override
@@ -81,6 +88,7 @@ public class Main extends Application
 
         HBox list = new HBox(productList);
         list.setMaxHeight(500);
+        list.setMaxWidth(800);
 
         Pane topMenu = new BorderPane(addProduct, null, null, null, null);
 

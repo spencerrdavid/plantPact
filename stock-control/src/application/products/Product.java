@@ -17,22 +17,23 @@ public class Product
     private static final String DEFAULT_IMAGE =
             "https://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/cat1/MissingImage_BB.png";
     private int id;
+    private static int idCounter = 0;
     private String code;
     private String name;
     private String image;   // URL for image
     private String description;
     private String ingredients;
     private int price;  // price per 0.5 kg (pence)
-    private int storeQuantity;  // weight in storage (kilograms)
-    private int floorQuantity;  // weight on shop floor (kilograms)
+    private int storeQuantity;  // quantity in storage (kilograms)
+    private int floorQuantity;  // quantity on shop floor (kilograms)
 
     /**
      * Constructor for Product objects.
      */
-    public Product(int id, String code, String name, String image, String description,
+    public Product(String code, String name, String image, String description,
                    String ingredients, int price, int quantity)
     {
-        this.id = id;
+        this.id = idCounter++;
         this.code = code;
         this.name = name;
         if (image.isEmpty()) {
@@ -43,6 +44,7 @@ public class Product
         this.description = description;
         this.ingredients = ingredients;
         this.price = price;
+        // new product quantities are initially deposited into storage
         this.storeQuantity = quantity;
         this.floorQuantity = 0;
     }
@@ -152,13 +154,6 @@ public class Product
      */
     public void setFieldFromInput(String input, AddProductEnum type) {
         switch (type) {
-            case ID:
-                if (ProductDataProcessor.isPositiveInteger(input)) {
-                    id = Integer.parseInt(input);
-                } else {
-                    id = 0;
-                }
-                break;
             case CODE:
                 code = input;
                 break;

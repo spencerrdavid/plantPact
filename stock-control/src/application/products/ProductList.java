@@ -24,25 +24,18 @@ public class ProductList extends BorderPane
     public ProductList()
     {
         super();
-        cardList = FXCollections.observableArrayList();
-//        Product test = new Product(0, "0000", "food", "", "", 0,50);
-//        ProductCard testCard = new ProductCard(test);
-//        Product test1 = new Product(0, "0000", "food", "", "", 0,60);
-//        ProductCard testCard1 = new ProductCard(test1);
-//        Product test2 = new Product(0, "0000", "food", "", "", 0,70);
-//        ProductCard testCard2 = new ProductCard(test2);
-//        cardList.add(testCard);
-//        cardList.add(testCard1);
-//        cardList.add(testCard2);
         cardListView = new ListView<>();
         cardListView.setOrientation(Orientation.HORIZONTAL);
         cardListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         cardListView.getSelectionModel().clearSelection();
         cardListView.setFocusTraversable(false);
-//        cardListView.setItems(cardList);
+        cardListView.setPrefWidth(800);
+        cardList = FXCollections.observableArrayList();
         emptyLabel = new Label("No products have been added yet.");
         emptyLabel.setId("empty-label");
-        setCenter(emptyLabel);
+//        setCenter(emptyLabel);
+        setTestProducts();  // for testing
+        setCenter(cardListView);
 
     }
 
@@ -59,5 +52,45 @@ public class ProductList extends BorderPane
         } else {
             cardList.add(newCard);
         }
+    }
+
+    /**
+     * Generates some ProductCard objects for testing.
+     */
+    private void setTestProducts() {
+
+        Product test = new Product("0001", "Red kidney beans",
+                "http://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/BB_150910-0407-0265.png",
+                "Dried dark red kidney beans", "red kidney beans", 100, 100);
+        ProductCard testCard = new ProductCard(test);
+        cardList.add(testCard);
+
+        Product test1 = new Product("1001", "Raw almonds",
+                "http://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/000120_Unsalted-Almonds-Dry-Roasted_cluster.png",
+                "Unsalted raw almonds", "almonds", 440, 50);
+        ProductCard testCard1 = new ProductCard(test1);
+        cardList.add(testCard1);
+
+        Product test2 = new Product("1002", "Raw cashews",
+                "http://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/BB_150910-0125-0199.png",
+                "Unsalted raw cashew nuts", "cashew nuts", 650, 50);
+        ProductCard testCard2 = new ProductCard(test2);
+        cardList.add(testCard2);
+
+        Product test3 = new Product("3001", "Fusilli",
+                "http://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/BB_150910-1644-0298.png",
+                "Fusilli pasta, great for baked dishes", "durum wheat semolina, niacin, iron, riboflavin, thiamine mononitrate, folic acid",
+                600, 150);
+        ProductCard testCard3 = new ProductCard(test3);
+        cardList.add(testCard3);
+
+        Product test4 = new Product("3102", "Brown long grain rice",
+                "http://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/BB_150910-1602-0295.png",
+                "Whole grain rice, ideal for savoury dishes", "brown long grain rice", 650, 100);
+        ProductCard testCard4 = new ProductCard(test4);
+        cardList.add(testCard4);
+
+        // add the list of cards to the list view
+        cardListView.setItems(cardList);
     }
 }
