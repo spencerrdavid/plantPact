@@ -4,13 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
- * The ProductList class contains a list of ProductCard objects.
+ * The ProductList class displays a list of ProductCard objects.
  *
  * @author David Spencer
  * @version 1.0
@@ -47,7 +46,7 @@ public class ProductList extends BorderPane
 
     /**
      * Adds a product to the list.
-     * @param product The product to be added to the list.
+     * @param product the product to be added to the list
      */
     public void addProduct(Product product) {
         ProductCard newCard = new ProductCard(product);
@@ -61,8 +60,8 @@ public class ProductList extends BorderPane
     }
 
     /**
-     * Toggles between different product categories.
-     * @param type The type of product to be displayed.
+     * Toggles between displaying different product categories.
+     * @param type the type of product to be displayed
      */
     public void toggleProducts(String type) {
         switch (type) {
@@ -98,7 +97,7 @@ public class ProductList extends BorderPane
 
     /**
      * Updates the list of cards according to a given product type.
-     * @param type the selected product type
+     * @param type the selected product enum type
      */
     private void filterListByProductCode(ProductCodeEnum type) {
         cardListView.setItems(FXCollections.observableArrayList(products.stream()
@@ -107,15 +106,15 @@ public class ProductList extends BorderPane
     }
 
     /**
-     * Generates some ProductCard objects for testing.
+     * Generates some ProductCard objects for testing the application.
      */
     private void setTestProducts() {
 
-        Product test = new Product("0001", "Red kidney beans",
+        Product test0 = new Product("0001", "Red kidney beans",
                 "http://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/BB_150910-0407-0265.png",
                 "Dried dark red kidney beans", "red kidney beans", 100, 100);
-        ProductCard testCard = new ProductCard(test);
-        products.add(testCard);
+        ProductCard testCard0 = new ProductCard(test0);
+        products.add(testCard0);
 
         Product test1 = new Product("1001", "Raw almonds",
                 "http://www.bulkbarn.ca/app_themes/BulkBarn/Images/assets/products/full/000120_Unsalted-Almonds-Dry-Roasted_cluster.png",

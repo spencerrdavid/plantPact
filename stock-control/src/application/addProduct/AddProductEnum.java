@@ -1,7 +1,7 @@
 package application.addProduct;
 
 /**
- * Enum for fields of product objects.
+ * Enum for fields of Product objects.
  *
  * @author David Spencer
  * @version 1.0
@@ -12,13 +12,13 @@ public enum AddProductEnum {
     IMAGE("Product image: "),
     DESCRIPTION("Description: "),
     INGREDIENTS("Ingredients: "),
-    PRICE("Price /0.5kg in pence: "),
+    PRICE("Price /0.5kg (pence): "),
     QUANTITY("Quantity delivered (kg): ");
 
     private String title;
 
     /**
-     * Constructor for the enum
+     * Constructor for this enum.
      * @param title the field title
      */
     AddProductEnum(String title)
@@ -27,14 +27,13 @@ public enum AddProductEnum {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return title;
     }
 
     /**
      * Returns alert text for InvalidFieldException.
-     * @return description for an alert
+     * @return string description for an alert
      */
     public String getInvalidFieldDescription() {
         if (this == CODE) {
@@ -63,10 +62,9 @@ public enum AddProductEnum {
 
     /**
      * Returns alert text for StringLengthExceededException.
-     * @return description for an alert
+     * @return string description for an alert
      */
-    public String getStringLengthExceededDescription()
-    {
+    public String getStringLengthExceededDescription() {
         return "The \"" + title + "\" field contains too much text. Please enter something shorter.";
     }
 }

@@ -1,11 +1,10 @@
 package application.addProduct;
 
 /**
- * An exception thrown when a field contains invalid data.
+ * An exception thrown when a field contains invalid user input.
  */
 public class InvalidFieldException extends Exception
 {
-
     private AddProductEnum type;
 
     public InvalidFieldException(AddProductEnum type)

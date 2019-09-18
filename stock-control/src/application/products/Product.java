@@ -1,7 +1,6 @@
 package application.products;
 
 import application.addProduct.AddProductEnum;
-
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,7 +24,7 @@ public class Product
     private String ingredients;
     private int price;  // price per 0.5 kg (pence)
     private int storeQuantity;  // quantity in storage (kilograms)
-    private int floorQuantity;  // quantity on shop floor (kilograms)
+    private int floorQuantity;  // quantity on shop/distribution centre floor (kilograms)
 
     /**
      * Constructor for Product objects.
@@ -50,14 +49,12 @@ public class Product
     }
 
     /**
-     * The default constructor for this class
+     * The default constructor for this class.
      */
     public Product()
     {
+        this.id = idCounter++;
         image = DEFAULT_IMAGE;
-        price = 0;
-        storeQuantity = 0;
-        floorQuantity = 0;
     }
 
     public int getId() {
@@ -106,7 +103,7 @@ public class Product
 
     /**
      * Checks that input string is in URL form and sets the image field accordingly.
-     * @param image The URL string to be checked
+     * @param image the URL string to be checked and set
      */
     public void setImage(String image) {
         try {
@@ -115,7 +112,7 @@ public class Product
         }
         catch (MalformedURLException e) {
             this.image = DEFAULT_IMAGE;
-            System.err.println("image string not a valid URL: " + e.toString());
+            System.err.println("image string not a valid URL: \n" + e.toString());
         }
     }
 
@@ -192,7 +189,7 @@ public class Product
 
     /**
      * Checks whether this product's code matches that of a given category.
-     * @param type the type of product being checked for
+     * @param type the enum type for product being checked
      */
     public boolean codeMatches(ProductCodeEnum type) {
         return code.substring(0, 2).equals(type.toString());

@@ -50,7 +50,7 @@ public class Main extends Application
 
     /**
      * Opens the AddProductWindow, from which a new product can be added to the list.
-     * @param event The event that caused this method to be called
+     * @param event the event that triggered this method
      */
     public void openAddProductWindow(Event event) {
         addProductWindow = new AddProductWindow();
@@ -60,7 +60,7 @@ public class Main extends Application
 
     /**
      * Adds a product to the list of products.
-     * @param product The product to be added.
+     * @param product the product to be added
      */
     public static void addProduct(Product product) {
         productList.addProduct(product);
@@ -78,11 +78,12 @@ public class Main extends Application
     }
 
     /**
-     * Toggles products displayed by type.
-     * @param type The product category to be displayed
+     * Toggles products displayed according to given type.
+     * @param type the product category to be displayed
      */
     private static void updateProductListByType(String type) {
         productList.toggleProducts(type);
+        // update GUI controls to reflect current state
         for (Button button : productToggleButtons) {
             if (button.getText().equals(type.substring(0, 1).toUpperCase() + type.substring(1))) {
                 button.setDisable(true);
@@ -92,6 +93,9 @@ public class Main extends Application
         }
     }
 
+    /**
+     * Starts the JavaFX application.
+     */
     @Override
     public void start(Stage primaryStage) {
 
@@ -146,13 +150,13 @@ public class Main extends Application
         Pane addProductBox = new HBox(addProductButton);
         addProductBox.setPadding(padding);
 
-        HBox list = new HBox(productList);
-        list.setMaxHeight(300);
-        list.setMaxWidth(800);
+        HBox productListBox = new HBox(productList);
+        productListBox.setMaxHeight(300);
+        productListBox.setMaxWidth(800);
 
-        Pane topMenu = new BorderPane(toggleButtonsBox, null, null, null, null);
+        Pane topMenuPane = new BorderPane(toggleButtonsBox, null, null, null, null);
 
-        root = new BorderPane(list, topMenu, null, addProductBox, null);
+        root = new BorderPane(productListBox, topMenuPane, null, addProductBox, null);
         root.setPrefSize(900, 450);
 
         Scene scene = new Scene(root);
@@ -164,7 +168,9 @@ public class Main extends Application
         stage.show();
     }
 
-
+    /**
+     * Launches the application.
+     */
     public static void main(String[] args) {
         launch(args);
     }

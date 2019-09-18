@@ -5,7 +5,6 @@ package application.addProduct;
  */
 public class StringLengthExceededException extends Exception
 {
-
     private AddProductEnum type;
 
     public StringLengthExceededException(AddProductEnum type)

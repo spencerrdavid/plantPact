@@ -31,7 +31,7 @@ public class ProductCard extends VBox
         }
         image.setFitHeight(200);
         image.setFitWidth(200);
-        image.setOnMouseClicked((MouseEvent e) -> System.out.println("clicked"));
+        image.setOnMouseClicked((MouseEvent e) -> System.out.println("clicked " + product.getName()));
         Label nameLabel = new Label(product.getName());
         Label totalQuantityLabel = new Label(product.getTotalStockQuantity() + "kg in stock");
         for (Label label : new Label[] {nameLabel, totalQuantityLabel}) {
@@ -47,7 +47,7 @@ public class ProductCard extends VBox
 
     /**
      * Gets this card's product.
-     * @return The product represented by this card
+     * @return the Product represented by this card
      */
     public Product getProduct() {
         return product;

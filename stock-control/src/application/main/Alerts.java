@@ -3,7 +3,7 @@ package application.main;
 import javafx.scene.control.Alert;
 
 /**
- * The Alerts class is used to generate alerts with messages for the user.
+ * The Alerts class is used to generate modal dialogues with messages for the user.
  *
  * @author David Spencer
  * @version 1.0
@@ -11,7 +11,7 @@ import javafx.scene.control.Alert;
 public class Alerts
 {
     /**
-     * Generates an alert from input
+     * Generates an alert from given input.
      * @param type type of alert
      * @param title title of alert
      * @param text text for alert

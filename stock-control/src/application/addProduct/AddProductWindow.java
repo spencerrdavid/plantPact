@@ -27,7 +27,7 @@ public class AddProductWindow extends Application
     private Stage stage;
 
     /**
-     * Constructor for the AddProductWindow class
+     * Constructor for the AddProductWindow class.
      */
     public AddProductWindow()
     {
@@ -36,7 +36,7 @@ public class AddProductWindow extends Application
 
     /**
      * Method used to add the new product to the application.
-     * @param event The event that caused this call
+     * @param event the event that triggered this call
      */
     private void addProduct(ActionEvent event) {
         try {
@@ -47,7 +47,7 @@ public class AddProductWindow extends Application
             }
         }
         catch (NullPointerException exception) {
-            System.err.println("Something went wrong!" + exception.toString());
+            System.err.println("Something went wrong! \n" + exception.toString());
         }
         catch (InvalidFieldException exception) {
             Alerts.showAlert(Alert.AlertType.ERROR,
@@ -70,10 +70,13 @@ public class AddProductWindow extends Application
     /**
      * Handles window closing without product being added.
      */
-    public void handleWindowClosed(WindowEvent event) {
+    public void handleWindowCloseButton(WindowEvent event) {
         Main.disableAddProductButton();
     }
 
+    /**
+     * Starts the stage for this window.
+     */
     @Override
     public void start(Stage window)
     {
@@ -103,7 +106,7 @@ public class AddProductWindow extends Application
         scene.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
         stage.setTitle("Add Product");
         stage.setScene(scene);
-        stage.setOnHidden(this::handleWindowClosed);
+        stage.setOnHidden(this::handleWindowCloseButton);
         stage.setResizable(false);
         stage.show();
     }

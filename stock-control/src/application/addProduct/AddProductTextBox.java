@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
 /**
- * A text box with a label.
+ * A text box with a label, for user input.
  *
  * @author David Spencer
  * @version 1.0
@@ -18,16 +18,15 @@ class AddProductTextBox extends HBox
     private TextField textField;
 
     /**
-     * Constructor for AddProductTextBox
+     * Constructor for AddProductTextBox objects.
      *
-     * @param name The name of the field
-     * @param newProduct The Product object being created
-     * @param type The type of the text field
+     * @param name the name of this input field, a string
+     * @param newProduct the Product object, to be created from user input
+     * @param type the enumerated type for the text field
      */
     public AddProductTextBox(String name, Product newProduct, AddProductEnum type)
     {
         super();
-
         Label nameLabel = new Label();
         nameLabel.setText(name);
         nameLabel.setMaxWidth(Double.MAX_VALUE);
@@ -39,7 +38,6 @@ class AddProductTextBox extends HBox
                 newProduct.setFieldFromInput(newValue, type));
 
         setAlignment(Pos.CENTER);
-
         this.getChildren().addAll(nameLabel, textField);
     }
 }
